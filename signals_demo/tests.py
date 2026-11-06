@@ -1,3 +1,4 @@
+import threading
 import time
 
 from django.test import TestCase
@@ -18,3 +19,7 @@ class SignalBehaviourTests(TestCase):
 
         self.assertGreaterEqual(end - start, HANDLER_DELAY)
         self.assertLessEqual(last_call["finished_at"], end)
+
+    def test_signal_runs_in_caller_thread(self):
+        Order.objects.create(item="mouse")
+        self.assertEqual(last_call["thread_id"], threading.get_ident())
