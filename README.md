@@ -81,3 +81,18 @@ python manage.py rectangle_demo 10 5
 {'length': 10}
 {'width': 5}
 ```
+
+## Tests and checks
+
+```bash
+python manage.py test
+ruff check .
+ruff format --check .
+mypy .
+```
+
+The same checks run in GitHub Actions on every pull request. To run them before each commit:
+
+```bash
+pre-commit install
+```
