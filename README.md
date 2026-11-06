@@ -26,3 +26,16 @@ save() returned after 2.02s
 Receiver finished before save() returned: True
 Synchronous: the caller waited for the receiver.
 ```
+
+### Q2. Do signals run in the same thread as the caller?
+
+Yes. The caller and the receiver report the same thread id.
+
+```bash
+python manage.py q2_thread
+```
+```
+Caller thread:   140228205266752
+Receiver thread: 140228205266752
+Same thread.
+```
