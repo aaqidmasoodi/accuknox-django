@@ -39,3 +39,17 @@ Caller thread:   140228205266752
 Receiver thread: 140228205266752
 Same thread.
 ```
+
+### Q3. Do signals run in the same database transaction as the caller?
+
+Yes. Inside `transaction.atomic()` the order is saved and the receiver writes a `SignalLog` row. When the transaction is rolled back, the `SignalLog` row is gone as well, so the receiver's write was part of the same transaction.
+
+```bash
+python manage.py q3_transaction
+```
+```
+SignalLog rows inside the transaction: 1
+Receiver in atomic block: True
+After rollback: 0 orders, 0 signal logs
+Same transaction: the receiver's write was rolled back too.
+```
