@@ -96,3 +96,11 @@ The same checks run in GitHub Actions on every pull request. To run them before 
 ```bash
 pre-commit install
 ```
+
+## Project layout
+
+```
+config/          settings and URLs
+signals_demo/    Order and SignalLog models, the post_save receiver, Q1-Q3 commands and tests
+rectangle/       Rectangle class, demo command and tests
+```
