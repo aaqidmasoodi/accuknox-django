@@ -53,3 +53,31 @@ Receiver in atomic block: True
 After rollback: 0 orders, 0 signal logs
 Same transaction: the receiver's write was rolled back too.
 ```
+
+## Custom Classes in Python
+
+`rectangle/shapes.py`
+
+```python
+from collections.abc import Iterator
+
+
+class Rectangle:
+    def __init__(self, length: int, width: int) -> None:
+        if not isinstance(length, int) or not isinstance(width, int):
+            raise TypeError("length and width must be integers")
+        self.length = length
+        self.width = width
+
+    def __iter__(self) -> Iterator[dict[str, int]]:
+        yield {"length": self.length}
+        yield {"width": self.width}
+```
+
+```bash
+python manage.py rectangle_demo 10 5
+```
+```
+{'length': 10}
+{'width': 5}
+```
